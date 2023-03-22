@@ -1,0 +1,217 @@
+[
+    {
+        "source": "SuperHH",
+        "name": "Junior Python Backend Developer",
+        "url": "https://api.hh.ru/vacancies/77236116?host=hh.ru",
+        "salary": {
+            "from": null,
+            "to": 60000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Python-разработчик (Django, DRF)",
+        "url": "https://api.hh.ru/vacancies/70705466?host=hh.ru",
+        "salary": {
+            "from": 60000,
+            "to": 220000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Разработчик Python",
+        "url": "https://api.hh.ru/vacancies/77871173?host=hh.ru",
+        "salary": {
+            "from": 90000,
+            "to": 150000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Python разработчик",
+        "url": "https://api.hh.ru/vacancies/77650733?host=hh.ru",
+        "salary": {
+            "from": 100000,
+            "to": 200000,
+            "currency": "RUR",
+            "gross": true
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Программист Python",
+        "url": "https://api.hh.ru/vacancies/78240577?host=hh.ru",
+        "salary": {
+            "from": 80000,
+            "to": 400000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Программист/Python-разработчик",
+        "url": "https://api.hh.ru/vacancies/77901810?host=hh.ru",
+        "salary": {
+            "from": 50000,
+            "to": 70000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Python разработчик",
+        "url": "https://api.hh.ru/vacancies/77723429?host=hh.ru",
+        "salary": {
+            "from": 100000,
+            "to": 150000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Программист Python",
+        "url": "https://api.hh.ru/vacancies/78240587?host=hh.ru",
+        "salary": {
+            "from": 80000,
+            "to": 400000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Python blockchain developer (удаленно)",
+        "url": "https://api.hh.ru/vacancies/78233709?host=hh.ru",
+        "salary": {
+            "from": 3000,
+            "to": 5000,
+            "currency": "USD",
+            "gross": true
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Junior Data scientist (NLP)",
+        "url": "https://api.hh.ru/vacancies/77502259?host=hh.ru",
+        "salary": {
+            "from": 100000,
+            "to": 150000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Программист Python",
+        "url": "https://api.hh.ru/vacancies/77725574?host=hh.ru",
+        "salary": {
+            "from": 100000,
+            "to": 150000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Ведущий Python разработчик (удаленно)",
+        "url": "https://api.hh.ru/vacancies/78106381?host=hh.ru",
+        "salary": {
+            "from": null,
+            "to": 8000,
+            "currency": "USD",
+            "gross": true
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Программист (Python)",
+        "url": "https://api.hh.ru/vacancies/78240585?host=hh.ru",
+        "salary": {
+            "from": 80000,
+            "to": 400000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Разработчик C# / Python",
+        "url": "https://api.hh.ru/vacancies/71147348?host=hh.ru",
+        "salary": {
+            "from": 300000,
+            "to": 500000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Разработчик Python",
+        "url": "https://api.hh.ru/vacancies/78361679?host=hh.ru",
+        "salary": {
+            "from": 150000,
+            "to": null,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Программист Python",
+        "url": "https://api.hh.ru/vacancies/78359066?host=hh.ru",
+        "salary": null
+    },
+    {
+        "source": "SuperHH",
+        "name": "Разработчик Python",
+        "url": "https://api.hh.ru/vacancies/47668037?host=hh.ru",
+        "salary": {
+            "from": 30000,
+            "to": 80000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Программист Python",
+        "url": "https://api.hh.ru/vacancies/77800943?host=hh.ru",
+        "salary": {
+            "from": null,
+            "to": 1100000,
+            "currency": "KZT",
+            "gross": true
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Python Middle+/Senior Developer",
+        "url": "https://api.hh.ru/vacancies/77407510?host=hh.ru",
+        "salary": {
+            "from": 300000,
+            "to": 480000,
+            "currency": "RUR",
+            "gross": false
+        }
+    },
+    {
+        "source": "SuperHH",
+        "name": "Python разработчик",
+        "url": "https://api.hh.ru/vacancies/78016944?host=hh.ru",
+        "salary": {
+            "from": 25000,
+            "to": null,
+            "currency": "RUR",
+            "gross": false
+        }
+    }
+]
