@@ -1,5 +1,8 @@
 from abc import ABC, abstractmethod
 import os
+from typing import List, Dict, Union, Any
+from operator import itemgetter
+
 import requests
 import json
 
@@ -26,8 +29,11 @@ class HH(Engine):
             request_hh = requests.get(self.url, headers=self.my_auth_data,
                                       params={"keywords": self.word, 'page': item}).json()['items']
             for item2 in request_hh:
-                vacancies_list_hh.append(item2)
-        return vacancies_list_hh
+                if item2["salary"] != None:
+                    if item2["salary"]["from"] != None:
+                        if item2["salary"]["to"] != None:
+                            vacancies_list_hh.append(item2)
+            return vacancies_list_hh
 
     def save_to_json(self, file_path, vacancies_list_hh):
         with open(file_path, "w", encoding='UTF-8') as file:
@@ -35,13 +41,16 @@ class HH(Engine):
             for i in range(len(vacancies_list_hh)):
                 channel_info_hh.append(
                     {
-                        "source": 'SuperHH',
+                        "source": 'HeadHunter',
                         "name": vacancies_list_hh[i]['name'],
-                        "url": vacancies_list_hh[i]['url'],
-                        "salary": vacancies_list_hh[i]['salary'],
+                        "description": vacancies_list_hh[i]['snippet']['responsibility'],
+                        "url": vacancies_list_hh[i]['alternate_url'],
+                        "salary_from": int(vacancies_list_hh[i]["salary"]["from"]),
+                        "salary_to": int(vacancies_list_hh[i]["salary"]["to"]),
                     }
                 )
             json.dump(channel_info_hh, file, indent=4, ensure_ascii=False)
+            return channel_info_hh
 
 
 class SuperJob(Engine):
@@ -55,6 +64,9 @@ class SuperJob(Engine):
             request_sj = requests.get(self.url, headers=self.my_auth_data,
                                       params={"keywords": self.word, 'page': item}).json()['objects']
             for item2 in request_sj:
+                if item2['payment_from'] > item2['payment_to']:
+                    item2['payment_from'] = item2['payment_to']
+                    item2['payment_to'] = item2['payment_from']
                 vacancies_list_sj.append(item2)
         return vacancies_list_sj
 
@@ -67,16 +79,44 @@ class SuperJob(Engine):
                     {
                         "source": 'SuperJob',
                         "name": vacancies_list_sj[i]['profession'],
+                        "description": vacancies_list_sj[i]['candidat'],
                         "url": vacancies_list_sj[i]['link'],
-                        "salary": f'{vacancies_list_sj[i]["payment_to"]} - {vacancies_list_sj[i]["payment_from"]}',
+                        "salary_from": int(vacancies_list_sj[i]["payment_from"]),
+                        "salary_to": int(vacancies_list_sj[i]["payment_to"]),
                     }
                 )
             json.dump(channel_info_sj, file, indent=4, ensure_ascii=False)
+            return channel_info_sj
+
+
+class Vacancy:
+    __slots__ = ('name', 'description', 'url', 'salary_to', 'salary_from')
+    i = 0
+
+    def __init__(self, list, *args, **kwargs):
+        self.name = vacancies_info[self.i]['name']
+        self.description = vacancies_info[self.i]['description']
+        self.url = vacancies_info[self.i]['url']
+        self.salary_to = vacancies_info[self.i]['salary_to']
+        self.salary_from = vacancies_info[self.i]['salary_from']
+
+    def __str__(self):
+        return f'{self.name}, вот ссылка {self.url}.\n' \
+               f'Ее описание {self.description} \n' \
+               f'Зарпалта от {self.salary_from} до {self.salary_to}.'
+
+    def sorting_salary_vacancies(self, vacancies_info):
+        vacancies_info_sort = sorted(vacancies_info, key=itemgetter('salary_to') and itemgetter('salary_from'),
+                                     reverse=True)
+        return vacancies_info_sort
 
 
 sj = SuperJob()
 vacancies_list_sj = sj.get_request()
-sj.save_to_json('../vacant_SJ.json', vacancies_list_sj)
+vacancies_info: list[dict[str, Union[str, Any]]] = sj.save_to_json('../vacant_SJ.json', vacancies_list_sj)
 hh = HH()
 vacancies_list_hh = hh.get_request()
-hh.save_to_json('../vacant_HH.json', vacancies_list_hh)
+vacancies_info.extend(hh.save_to_json('../vacant_HH.json', vacancies_list_hh))
+
+i = Vacancy(vacancies_info)
+print(i)
