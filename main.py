@@ -14,7 +14,7 @@ connector.insert_SJ(data_sj)  # записываем полученные дан
 connector.insert_HH(data_hh)  # записываем полученные данные из HeadHunter в файл
 get_count_of_vacancy('vacantes.json')  # считаем и выводи количесво вакансий из каждого ресурса
 sort_file = []  # здесь будут храниться отсортированные данные
-vacants = []  # здесь будут храниться экземпряры класса Vacancy
+vacancies = []  # здесь будут храниться экземпряры класса Vacancy
 
 print("Как хотите отсортировать? (ЗП \ Город \ Дата)")
 user_input = input('')
@@ -33,15 +33,22 @@ elif user_input.lower() == "дата":
     sort_file = date_format(sort_file)
     sort_file = data_sorted(sort_file)
 
+# Запись экземпляров класса Vacancy в список vacants
 for i in sort_file:
     v = Vacancy(i['name'], i['description'], i['url'], i["salary_from"], i["salary_to"], i['source'], i['city'],
                 i['date'])
-    vacants.append(v)
-if len(vacants) == 0:
+    vacancies.append(v)
+if len(vacancies) == 0:
     print("Извините, но по вашему запросу ничего не найдено")
     exit()
 print("Вот 10 вакансий по вашему запросу.")
-for i in vacants:
+
+# Вывод вакансий пользователю
+for i in vacancies:
+    if i is vacancies[-1]:
+        print(f'\n'
+              f'На этом список подошел к концу.')
+        exit()
     print(i)
     count_vac += 1
     if count_vac == 10:
@@ -52,7 +59,3 @@ for i in vacants:
             continue
         else:
             exit()
-    if i == vacants[-1]:  # пока не придумал, как выйти из цикла, когда кончается список
-        print(f'\n'
-              f'На этом список подошел к концу.')
-        exit()
