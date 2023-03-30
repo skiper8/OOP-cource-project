@@ -4,6 +4,8 @@ import requests
 
 
 class Engine(ABC):
+    word = input("Введите ключевое слово для поиска - ")
+
     @abstractmethod
     def get_request(self):
         pass
@@ -15,14 +17,17 @@ class Engine(ABC):
 
 
 class HH(Engine):
-    word = 'Python'
-    my_auth_data = {'X-Api-App-Id': os.environ['HH_API_KEY']}
-    url = 'https://api.hh.ru/vacancies?text=' + word
 
     def get_request(self):
+        """
+        Парсим данные с ресурса HeadHunter
+        """
+
+        my_auth_data = {'X-Api-App-Id': os.environ['HH_API_KEY']}
+        url = 'https://api.hh.ru/vacancies?text=' + self.word
         vacancies_list_hh = []
         for item in range(1):
-            request_hh = requests.get(self.url, headers=self.my_auth_data,
+            request_hh = requests.get(url, headers=my_auth_data,
                                       params={"keywords": self.word, 'page': item}).json()['items']
             for item2 in request_hh:
                 if item2["salary"] is None:
@@ -38,20 +43,20 @@ class HH(Engine):
                     item2["salary"]["from"] = item2["salary"]["to"]
                     item2["salary"]["to"] = tmp
                 vacancies_list_hh.append(item2)
-
-        print(len(vacancies_list_hh))
         return vacancies_list_hh
 
 
 class SuperJob(Engine):
-    word = 'Python'
-    my_auth_data = {'X-Api-App-Id': os.environ['SJ_API_KEY']}
-    url = 'https://api.superjob.ru/2.0/vacancies/'
+    """
+    Парсим данные с ресурса SuperJob
+    """
 
     def get_request(self):
+        my_auth_data = {'X-Api-App-Id': os.environ['SJ_API_KEY']}
+        url = 'https://api.superjob.ru/2.0/vacancies/'
         vacancies_list_sj = []
         for item in range(1):
-            request_sj = requests.get(self.url, headers=self.my_auth_data,
+            request_sj = requests.get(url, headers=my_auth_data,
                                       params={"keywords": self.word, 'page': item}).json()['objects']
             for item2 in request_sj:
                 if item2['payment_from'] is None:
@@ -63,5 +68,4 @@ class SuperJob(Engine):
                     item2['payment_from'] = item2['payment_to']
                     item2['payment_to'] = tmp
                 vacancies_list_sj.append(item2)
-        print(len(vacancies_list_sj))
         return vacancies_list_sj

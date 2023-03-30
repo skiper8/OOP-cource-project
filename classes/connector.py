@@ -1,5 +1,6 @@
 import json
 import os
+from datetime import datetime
 
 
 class Connector:
@@ -33,6 +34,7 @@ class Connector:
                         "employer": data[i]['firm_name'],
                         "salary_from": int(data[i]["payment_from"]),
                         "salary_to": int(data[i]["payment_to"]),
+                        "date": data[i]["date_pub_to"]
                     }
                 )
             json.dump(vacant_sj, file, indent=4, ensure_ascii=False)
@@ -56,6 +58,7 @@ class Connector:
                         "employer": data[i]['employer']['name'],
                         "salary_from": data[i]["salary"]["from"],
                         "salary_to": data[i]["salary"]["to"],
+                        "date": data[i]['published_at']
                     }
                 )
             json.dump(vacant_hh, file, indent=4, ensure_ascii=False)
@@ -84,7 +87,7 @@ class Connector:
         функция удаления не сработает
         """
 
-        if not query:  # если передан пустой словарь
+        if not query:
             print("Пустой запрос, удаление невозможно.")
             return
 
