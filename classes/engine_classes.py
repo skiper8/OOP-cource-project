@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from classes.connector import *
+import os
 import requests
 
 
@@ -9,11 +9,6 @@ class Engine(ABC):
     @abstractmethod
     def get_request(self):
         pass
-
-    @staticmethod
-    def get_connector(file_name):
-        """ Возвращает экземпляр класса Connector """
-        return Connector
 
 
 class HH(Engine):
@@ -26,7 +21,7 @@ class HH(Engine):
         my_auth_data = {'X-Api-App-Id': os.environ['HH_API_KEY']}
         url = 'https://api.hh.ru/vacancies?text=' + self.word
         vacancies_list_hh = []
-        for item in range(1):
+        for item in range(50):
             request_hh = requests.get(url, headers=my_auth_data,
                                       params={"keywords": self.word, 'page': item}).json()['items']
             for item2 in request_hh:
@@ -55,7 +50,7 @@ class SuperJob(Engine):
         my_auth_data = {'X-Api-App-Id': os.environ['SJ_API_KEY']}
         url = 'https://api.superjob.ru/2.0/vacancies/'
         vacancies_list_sj = []
-        for item in range(1):
+        for item in range(50):
             request_sj = requests.get(url, headers=my_auth_data,
                                       params={"keywords": self.word, 'page': item}).json()['objects']
             for item2 in request_sj:

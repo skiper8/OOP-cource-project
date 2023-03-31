@@ -1,6 +1,3 @@
-import json
-
-
 class Vacancy:
     __slots__ = ('name', 'description', 'url', 'salary_to', 'salary_from', 'source', 'city', 'date')
     i = 0
