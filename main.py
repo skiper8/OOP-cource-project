@@ -1,20 +1,24 @@
-from classes.connector import *
 from classes.engine_classes import *
 from classes.jobs_classes import *
+from classes.connector import *
 from utils.utils import *
 
-count_vac = 0  # счетчик вакансий
-connector = Connector()  # создаем экземпляр класса Connector
-connector.check_file('vacantes.json')  # проверяем на существование файл. Если его нет то создаем
-sj = SuperJob()  # создаем экземпляр класса SuperJob
+# счетчик вакансий
+count_vac = 0
+# здесь будут храниться отсортированные данные
+sort_file = []
+# здесь будут храниться экземпряры класса Vacancy
+vacancies = []
+connector = Connector()
+# проверяем на существование файл. Если его нет то создаем
+connector.check_file('vacantes.json')
+sj = SuperJob()
 data_sj = sj.get_request()
-hh = HH()  # создаем экземпляр класса HH
+hh = HH()
 data_hh = hh.get_request()
-connector.insert_SJ(data_sj)  # записываем полученные данные из SuperJob в файл
-connector.insert_HH(data_hh)  # записываем полученные данные из HeadHunter в файл
-get_count_of_vacancy('vacantes.json')  # считаем и выводи количесво вакансий из каждого ресурса
-sort_file = []  # здесь будут храниться отсортированные данные
-vacancies = []  # здесь будут храниться экземпряры класса Vacancy
+connector.insert_SJ(data_sj)
+connector.insert_HH(data_hh)
+get_count_of_vacancy('vacantes.json')
 
 print("Как хотите отсортировать? (ЗП \ Город \ Дата)")
 user_input = input('')
